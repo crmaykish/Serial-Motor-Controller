@@ -34,3 +34,8 @@ void serialTransmit(char b, FILE *stream) {
 		serialTransmit('\r', stream);
 	}
 }
+
+void serialReceive(FILE *stream) {
+	while (!(UCSR0A & bitValue(RXC0)));
+	return UDR0;
+}

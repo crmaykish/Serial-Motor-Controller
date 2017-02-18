@@ -8,20 +8,25 @@
 #define F_CPU 16000000UL
 #endif
 
-int i = 0;
+#define INPUT_BUFFER_SIZE 32
+
+char command[INPUT_BUFFER_SIZE];
 
 void setup() {
 	serialInit();
 
 	// Redirect stdout to the UART
 	stdout = &uartOut;
+	
+	// Redirect stdin to UART
+	stdin = &uartIn;
 }
 
-// Read all sensors and output JSON over serial
 void loop() {
-	printf("Hello: %d\n", i);
-	i++;
-	_delay_ms(1000);
+	// Watch for input commands over serial
+	while(fgets(command, INPUT_BUFFER_SIZE, stdin)) {
+		printf("Executing: %s\n", command);
+	}
 }
 
 int main(void) {
