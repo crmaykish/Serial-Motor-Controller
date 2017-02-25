@@ -9,7 +9,7 @@
 #endif
 
 #ifndef BAUD
-#define BAUD 9600
+#define BAUD 38400
 #endif
 
 #define MYUBRR ((F_CPU / 16 / BAUD) - 1)
